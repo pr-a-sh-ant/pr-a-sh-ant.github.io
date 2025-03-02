@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Wavelet Driven Super Resolution for Real-time Rendering">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WDSR: Wavelet Driven Super Resolution for Real-time Rendering</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <link rel="stylesheet" href="./definitive-image-comparison-slider-master/src/dics.css">
+  <script src="./definitive-image-comparison-slider-master/src/dics.js"></script>
+	<script>
+    document.addEventListener('DOMContentLoaded', domReady);
+    function domReady() {
+      var b = document.querySelectorAll('.b-dics');
+      b.forEach(element => 
+        new Dics({
+          container: element,
+          textPosition: 'top'
+        })
+      );
+    }
+	</script>
+  <script src="./static/js/index.js"></script>
+  <style>
+    .rotated_text {
+        /* width: 20px;
+        height: 30px; */
+        transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        /* Internet Explorer 9*/
+        -moz-transform: rotate(-90deg);
+        /* Firefox */
+        -webkit-transform: rotate(-90deg);
+        /* Safari & Chrome */
+        -o-transform: rotate(-90deg);
+        /* Opera */
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <!-- <a class="navbar-item" href="https://Isaac-Paradox.github.io">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a> -->
+
+      <!-- <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://Isaac-Paradox.github.io/">
+            
+          </a>
+        </div>
+      </div> -->
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title" style="font-size:36px;">
+            WDSR: Wavelet Driven Super Resolution for Real-time Rendering
+          </h1>
+          <div class="is-size-5 publication-authors">
+            
+            <span class="author-block" style="font-size: 22px;">
+              <a href="https://jingsenzhu.github.io/">Prateek Poudel</a><sup>1</sup>,
+            </span>
+            <span class="author-block" style="font-size: 22px;">
+              <a href="https://Isaac-Paradox.github.io/">Prashant Aryal</a><sup>1</sup>,
+            </span>
+            <span class="author-block" style="font-size: 22px;">
+              <a href="https://jingsenzhu.github.io/">Kirtan Kunwar</a><sup>1</sup>,
+            </span>
+            <span class="author-block" style="font-size: 22px;">
+              <a href="https://jingsenzhu.github.io/">Navin Nepal</a><sup>1</sup>,
+            </span>
+            
+            
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block" style="font-size: 18px;"><sup>1</sup>IOE, Thapathali Campus</span>
+          </div>
+          <!-- <h2 style="font-size:24px;color:#6e6e6e">SIGGRAPH Asia 2023</h2> -->
+
+          <!-- <div class="column has-text-centered">
+            <div class="link-block"> -->
+              <!-- PDF Link. -->
+              <!-- <span class="link-block">
+                <a href="https://arxiv.org/pdf/2310.09726"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span> -->
+              <!-- <span class="link-block">
+                <a href="https://arxiv.org/abs/2310.09726"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> -->
+              <!-- <span class="link-block">
+                <a href="https://drive.google.com/file/d/1UO0vPEakHvXMltCcBSuwgPjrY1ITI5j7/view?usp=share_link"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Supplementary</span>
+                </a>
+              </span> -->
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://drive.google.com/file/d/1wSPdfpwOkOIznQUqUZdBMmdQ3WAWlhms/view?usp=share_link"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/Prateek61/WDSS"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+              </span>
+              <!-- Dataset Link. -->
+              <!-- <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                </a>
+              </span> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <div class="content">
+            <div class="b-dics" >
+              <img src="static/images/ev_2x/ev_lr.png" alt="Input" />
+              <img src="static/images/ev_2x/ev_01.png" alt="Ours" />
+              <img src="static/images/ev_2x/ev_hr.png" alt="GT" />
+              <img src="static/images/ev_2x/ev_pred.png" alt="NSRR" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="subtitle has-text-centered" style="font-size:16px;">
+        2x super-resolution result in ......
+      </h2>
+    </div>
+  </div>
+
+
+
+</section>
+<section class="section">
+  <div class="container is-max-desktop">
+  <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          This study presents Wavelet-Driven Super-Resolution using Fourier Mapped Neural Representations (WDSR), a novel framework that improves rendering quality while simultaneously reducing computational costs. Unlike interpolation-based upscaling techniques, WDSR takes advantage of temporal information, high-resolution G-buffers, and low-resolution images by using Fourier-mapped implicit neural representations combined with wavelet-domain processes to restore complex features accurately without compromising temporal coherence. Our method solves spectral bias, providing better textures, reduced aliasing, and better perceptual temporal coherence. By using a wavelet-domain approach, we break up frequency content, making multi-scale feature reconstruction possible. The final inverse wavelet transform produces images of high resolution. The process improves real-time rendering quality and prevents artefacts, offering an effective scalable approach that is well suited to modern pipelines.
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered" id="video">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <video id="video" controls playsinline height="100%">
+          <source src="static/videos/supplementary_video.mp4"
+                  type="video/mp4">
+        </video>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+
+<!-- <section class="section" id="alignment">
+<div class="container is-max-desktop has-text-centered">
+  <h2 class="title">Multi-resolution Alignment</h2>
+  <div class="hero-body">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <div class="content">
+          <img src="static/images/multi-resolution_alignment.png"/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content has-text-justified">
+    <br />
+    To get the utmost out of HR auxilary features, we propuse H-Net that align multi-resolution data at a homologous low resolution screen space. Fusing multi-resolution features into a low resolution feature can not only aggregate all the data with the same screen space coordinate, but also compress into a low resolution form. so H-Net take advantages in both quality and speed.
+  </div>
+</div>
+</section> -->
+
+<!-- <section class="section" id="demodulation">
+<div class="container is-max-desktop has-text-centered">
+  <h2 class="title">BRDF pre-integrate demodulation</h2>
+  <div class="hero-body">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <div class="content">
+          <div class="b-dics">
+            <img src="static/images/demodulation/Infiltrator_Input_aoi0_0.png" alt="LR RGB space" />
+            <img src="static/images/demodulation/Infiltrator_Irradiance_aoi2_0.png" alt="LR demodulated irradiance" />
+            <img src="static/images/demodulation/Infiltrator_BRDF_aoi1_0.png" alt="HR pre-integrated BRDF" />
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <div class="b-dics">
+            <img src="static/images/demodulation/Zen_Input_aoi0_0.png" alt="LR RGB space" />
+            <img src="static/images/demodulation/Zen_Irradiance_aoi2_0.png" alt="LR demodulated irradiance" />
+            <img src="static/images/demodulation/Zen_BRDF_aoi1_0.png" alt="HR pre-integrated BRDF" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content has-text-justified">
+    <br />
+    We further improve the quailty using demodulation. With demodulation, the inferred target of neural network change from high frequency RGB color to low frequency irradiance term. 
+  </div>
+</div>
+</section> -->
+
+<!-- <section class="section" id="performance">
+<div class="container is-max-desktop has-text-centered">
+  <h2 class="title">Performance</h2>
+  <div class="hero-body">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <div class="content">
+          <img src="static/images/performance.png"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <div class="content">
+          <table style="border-spacing: 2px;">
+          <tr>  
+            <th></th><th></th>
+            <th>Ours</th><th>Ours ⚡</th><th>NSRR</th><th>MNSS</th><th>FSR</th><th>XeSS</th><th>Ours-8x</th><th>NSRR-8x</th><th>MNSS-8x</th>
+          </tr>
+          <tr>  
+            <th rowspan="4"><p class="rotated_text" style="margin: 50px auto;">PSNR (dB)</p></th>
+            <th>Kite</th>
+            <td><B>32.33</B></td><td>31.22</td><td>27.74</td><td>28.00</td><td>29.12</td><td>28.30</td><td><B>30.21</B></td><td>25.00</td><td>25.72</td>
+          </tr>
+          <tr> 
+            <th>Showdown</th>
+            <td><B>36.32</B></td><td>31.42</td><td>30.27</td><td>29.17</td><td>26.29</td><td>29.31</td><td><B>33.61</B></td><td>29.17</td><td>25.62</td>
+          </tr>
+          <tr> 
+            <th>Slay</th>
+            <td><B>37.02</B></td><td>34.41</td><td>35.42</td><td>35.39</td><td>32.39</td><td>34.94</td><td><B>34.26</B></td><td>32.12</td><td>33.47</td>
+          </tr>
+          <tr> 
+            <th>City</th>
+            <td><B>28.94</B></td><td>28.66</td><td>27.65</td><td>28.23</td><td>26.56</td><td>27.15</td><td><B>27.20</B></td><td>25.95</td><td>26.46</td>
+          </tr>
+          <tr>  
+            <th rowspan="4"><p class="rotated_text" style="margin: 50px auto;">SSIM</p></th>
+            <th>Kite</th>
+            <td><B>0.933</B></td><td>0.900</td><td>0.832</td><td>0.829</td><td>0.887</td><td>0.893</td><td><B>0.899</B></td><td>0.765</td><td>0.770</td>
+          </tr>
+          <tr> 
+            <th>Showdown</th>
+            <td><B>0.976</B></td><td>0.949</td><td>0.945</td><td>0.914</td><td>0.866</td><td>0.917</td><td><B>0.955</B></td><td>0.914</td><td>0.813</td>
+          </tr>
+          <tr> 
+            <th>Slay</th>
+            <td><B>0.972</B></td><td>0.958</td><td>0.962</td><td>0.963</td><td>0.928</td><td>0.944</td><td><B>0.957</B></td><td>0.939</td><td>0.943</td>
+          </tr>
+          <tr> 
+            <th>City</th>
+            <td><B>0.921</B></td><td>0.901</td><td>0.899</td><td>0.896</td><td>0.836</td><td>0.888</td><td><B>0.916</B></td><td>0.873</td><td>0.873</td>
+          </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content has-text-centered">
+    <br />
+    FuseSR outperform SOTA method in both quality and speed.
+  </div>
+</div>
+</section> -->
+
+<!-- <section class="section" id="dataset"></section>
+<div class="container is-max-desktop">
+  <div class="hero-body">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <div class="content">
+          <div class="b-dics" >
+            <img src="static/images/showdown_1635/1635_MNSS.png" alt="MNSS" />
+            <img src="static/images/showdown_1635/1635_XESS.png" alt="XESS" />
+            <img src="static/images/showdown_1635/1635_SSSR.png" alt="Ours" />
+            <img src="static/images/showdown_1635/1635_GT.png" alt="GT" />
+            <img src="static/images/showdown_1635/1635_Input.png" alt="Input" />
+            <img src="static/images/showdown_1635/1635_NSRR.png" alt="NSRR" />
+            <img src="static/images/showdown_1635/1635_FSR.png" alt="FSR" />
+            <img src="static/images/showdown_1635/1635_LIIF.png" alt="LIIF" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section> -->
+
+
+
+<!-- <section class="section" id="synthesis">
+  <div class="container is-max-desktop has-text-centered">
+    <h2 class="title">Temporal Result</h2>
+    <div class="container">
+      <div id="novel-carousel" class="carousel results-carousel">
+        <div class="item item-0">
+          <div class="b-dics">
+            <img src="static/videos/Kite_NSRR_result.gif" alt="NSRR"/>
+            <img src="static/videos/Kite_SSSR_result.gif" alt="Ours" />
+          </div>
+        </div>
+        <div class="item item-1">
+          <div class="b-dics">
+            <img src="static/videos/Slay_NSRR_result.gif" alt="NSRR"/>
+            <img src="static/videos/Slay_SSSR_result.gif" alt="Ours" />
+          </div>
+        </div>
+        <div class="item item-2">
+          <div class="b-dics">
+            <img src="static/videos/SD_8X_NSRR.gif" alt="NSRR"/>
+            <img src="static/videos/SD_8X_SSSR.gif" alt="Ours" />
+          </div>
+        </div>
+        <div class="item item-3">
+          <div class="b-dics">
+            <img src="static/videos/M4_8X_NSRR.gif" alt="NSRR"/>
+            <img src="static/videos/M4_8X_SSSR.gif" alt="Ours" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+<!-- <section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>
+      @inproceedings{zhong2023fusesr,
+        title={FuseSR: Super Resolution for Real-time Rendering through Efficient Multi-resolution Fusion},
+        author={Zhong, Zhihua and Zhu, Jingsen and Dai, Yuxin and Zheng, Chuankun and Chen, Guanlin and Huo, Yuchi and Bao, Hujun and Wang, Rui},
+        booktitle={SIGGRAPH Asia 2023 Conference Papers},
+        pages={1--10},
+        year={2023}
+      }</code></pre>
+  </div>
+</section> -->
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <!-- <a class="icon-link"
+         href="https://arxiv.org/pdf/2303.07634">
+        <i class="fas fa-file-pdf"></i>
+      </a> -->
+      <!-- <a class="icon-link" href="https://github.com/Isaac-Paradox/" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a> -->
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            Thanks to <a
+              href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> for their excellent website templates.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  bulmaCarousel.attach('#geo-carousel', {
+    slidesToScroll: 1,
+    slidesToShow: 2,
+    infinite: true
+  });
+  bulmaCarousel.attach('#novel-carousel', {
+    slidesToScroll: 1,
+    slidesToShow: 2,
+    infinite: true
+  });
+  bulmaCarousel.attach('#edit-carousel', {
+    slidesToScroll: 1,
+    slidesToShow: 2,
+    infinite: true
+  });
+</script>
+
+</body>
+</html>
