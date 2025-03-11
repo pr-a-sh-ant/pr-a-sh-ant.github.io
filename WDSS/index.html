@@ -151,7 +151,7 @@
               </span> -->
               <!-- Video Link. -->
               <span class="link-block">
-                <a href="https://drive.google.com/file/d/1wSPdfpwOkOIznQUqUZdBMmdQ3WAWlhms/view?usp=share_link"
+                <a href="https://drive.google.com/drive/folders/1jbtVdH_ctq37MajRd19wS2urNoAaq25P?usp=sharing"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-youtube"></i>
@@ -202,7 +202,7 @@
         </div>
       </div>
       <h2 class="subtitle has-text-centered" style="font-size:16px;">
-        2x super-resolution result in ......
+        2x super-resolution result
       </h2>
     </div>
   </div>
@@ -217,7 +217,7 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
-          This study presents Wavelet-Driven Super-Resolution using Fourier Mapped Neural Representations (WDSR), a novel framework that improves rendering quality while simultaneously reducing computational costs. Unlike interpolation-based upscaling techniques, WDSR takes advantage of temporal information, high-resolution G-buffers, and low-resolution images by using Fourier-mapped implicit neural representations combined with wavelet-domain processes to restore complex features accurately without compromising temporal coherence. Our method solves spectral bias, providing better textures, reduced aliasing, and better perceptual temporal coherence. By using a wavelet-domain approach, we break up frequency content, making multi-scale feature reconstruction possible. The final inverse wavelet transform produces images of high resolution. The process improves real-time rendering quality and prevents artefacts, offering an effective scalable approach that is well suited to modern pipelines.
+          Real-time rendering in modern applications such as gaming, virtual reality, and simulations requires a balance between computational efficiency and visual fidelity. However, rendering high-resolution frames with advanced effects like ray tracing is computationally expensive, limiting real-time performance. To address this challenge, we propose \textbf{Wavelet-Driven Super-Sampling with Fourier Mapped Neural Representations (WDSS)}, a real-time super-resolution framework that reconstructs high-resolution frames from low-resolution inputs. Our method leverages auxiliary scene data, including high-resolution G-buffers and temporal frames, to enhance structural and shading details. By integrating \textbf{Fourier-mapped implicit neural representations (INRs)} with \textbf{wavelet-domain processing}, our approach effectively captures high-frequency details while maintaining temporal stability. Unlike traditional interpolation-based methods, WDSS utilizes physically-based material and geometric information to improve texture sharpness, reduce aliasing, and enhance temporal coherence. We demonstrate the effectiveness of our approach using datasets generated from Unreal Engine 4, showcasing its ability to produce high-quality, artifact-free upscaled frames. As an open and scalable alternative to proprietary solutions like DLSS and XeSS, WDSS provides a promising pathway for real-time rendering advancements in interactive applications.
         </div>
       </div>
     </div>
@@ -251,10 +251,10 @@
       </div>
     </div>
   </div>
-  <div class="content has-text-justified">
+  <!-- <div class="content has-text-justified">
     <br />
     To get the utmost out of HR auxilary features, we propuse H-Net that align multi-resolution data at a homologous low resolution screen space. Fusing multi-resolution features into a low resolution feature can not only aggregate all the data with the same screen space coordinate, but also compress into a low resolution form. so H-Net take advantages in both quality and speed.
-  </div>
+  </div> -->
 </div>
 </section>
 
@@ -266,18 +266,18 @@
       <div class="column">
         <div class="content">
           <div class="b-dics">
-            <img src="static/images/demodulation/Infiltrator_Input_aoi0_0.png" alt="LR RGB space" />
-            <img src="static/images/demodulation/Infiltrator_Irradiance_aoi2_0.png" alt="LR demodulated irradiance" />
-            <img src="static/images/demodulation/Infiltrator_BRDF_aoi1_0.png" alt="HR pre-integrated BRDF" />
+            <img src="static/images/demodulation/frame.png" alt="RGB space" />
+            <img src="static/images/demodulation/demod.png" alt="Demodulated irradiance" />
+            <img src="static/images/demodulation/BRDF.png" alt="Pre-integrated BRDF" />
           </div>
         </div>
       </div>
       <div class="column">
         <div class="content">
           <div class="b-dics">
-            <img src="static/images/demodulation/Zen_Input_aoi0_0.png" alt="LR RGB space" />
-            <img src="static/images/demodulation/Zen_Irradiance_aoi2_0.png" alt="LR demodulated irradiance" />
-            <img src="static/images/demodulation/Zen_BRDF_aoi1_0.png" alt="HR pre-integrated BRDF" />
+            <img src="static/images/demodulation/frame_1.png" alt="RGB space" />
+            <img src="static/images/demodulation/demod_1.png" alt="Demodulated irradiance" />
+            <img src="static/images/demodulation/brdf_1.png" alt="Pre-integrated BRDF" />
           </div>
         </div>
       </div>
